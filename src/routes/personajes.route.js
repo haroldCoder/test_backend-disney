@@ -35,21 +35,21 @@ route.route("/")
     }
 })
 
-.delete("/:id",async(req, res)=>{
-    try{
-        //obtener el id por parametros
-        const {id} = req.params;
-
-        await Personaje.destroy({where: {id}})
-        res.json({success: true})
-    }
-    catch(err){
-        console.log(err);
-        res.json({err: 'ocurrio un error al eliminar el personaje'})
+route.route(":/id")
+.delete(async (req, res) => {
+    try {
+      // Obtener el id por parámetros
+      const { id } = req.params;
+  
+      await Personaje.destroy({ where: { id } });
+      res.json({ success: true });
+    } catch (err) {
+      console.error(err);
+      res.json({ error: 'Ocurrió un error al eliminar el personaje' });
     }
 })
 
-.put("/:id", async(req, res)=>{
+.put(async(req, res)=>{
     try{
         const {id} = req.params;
         const { imagen, nombre, edad, peso, historia} = req.body;
