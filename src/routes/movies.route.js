@@ -1,14 +1,36 @@
 const {Router} = require("express");
 const route = Router();
 const Movie = require("../models/Movies.models");
+const Personaje = require("../models/Personaje");
+const Genero = require("../models/Genero");
 
 route.route("/")
 .get(async(req, res)=>{
     try{
-    const movies = await Movie.findAll({
-        attributes: ['Imagen', 'Titulo', 'Fecha']
-      });
-    res.json(movies);
+        const { name, genre, order } = req.query;
+
+        const options = {
+            attributes: ['Imagen', 'Titulo', 'Fecha'],
+        };
+
+        if (name) {
+            options.where = { Titulo: name };
+        }
+
+        if (genre) {
+            options.include = {
+                model: Genero,
+                where: { id: genre },
+                attributes: []
+            };
+        }
+
+        if (order) {
+            options.order = [['Fecha', order.toUpperCase()]];
+        }
+
+        const movies = await Movie.findAll(options);
+        res.json(movies);
     }
     catch(err){
         console.error(err);
@@ -78,3 +100,23 @@ route.route(":/id")
         res.json({err: 'Ocurrio un error al actualizar la pelicula'});
     }
 })
+
+.get(async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      // Obtener los detalles de la película/serie por su ID
+      const pelicula = await Movie.findByPk(id, {
+        include: [Personaje], // Incluir los personajes relacionados
+      });
+
+      if (!pelicula) {
+        return res.status(404).json({ error: "Película/serie no encontrada" });
+      }
+
+      res.json(pelicula);
+    } catch (error) {
+      console.error("Error al obtener los detalles de la película/series:", error);
+      res.status(500).json({ error: "Error al obtener los detalles de la película/series" });
+    }
+  });
