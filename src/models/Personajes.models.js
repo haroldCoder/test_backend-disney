@@ -21,9 +21,14 @@ const Personaje = sequelize.define('personajes', {
   Historia: {
     type: DataTypes.STRING,
     allowNull: false
+  },
+  pelicula_serie_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false
   }
 }, {
-    paranoid: true
+    paranoid: true,
+    timestamps: true,
 });
 
 module.exports = Personaje;

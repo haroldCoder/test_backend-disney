@@ -1,8 +1,8 @@
 const {Router} = require("express");
 const route = Router();
 const Movie = require("../models/Movies.models");
-const Personaje = require("../models/Personaje");
-const Genero = require("../models/Genero");
+const Personaje = require("../models/Personajes.models");
+const Genero = require("../models/Genero.models");
 
 route.route("/")
 .get(async(req, res)=>{
@@ -120,3 +120,5 @@ route.route(":/id")
       res.status(500).json({ error: "Error al obtener los detalles de la película/series" });
     }
   });
+
+  module.exports = route

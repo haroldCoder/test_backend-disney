@@ -1,17 +1,19 @@
-const { DataTypes, STRING } = require('sequelize');
+const { DataTypes, STRING, INTEGER, UUID } = require('sequelize');
 const sequelize = require('../connection');
 
 const Genero = sequelize.define('genero', {
     id: {
-        DataTypes: INT,
-        allowNulls: false
+        type: DataTypes.INTEGER,
+        allowNulls: false,
+        primaryKey: true,
+        autoIncrement: true,
     },
     Nombre: {
-        DataTypes: STRING,
+        type: DataTypes.STRING,
         allowNulls: false
     },
     Imagen: {
-        DataTypes: STRING,
+        type: DataTypes.STRING,
         allowNulls: false
     }
 })

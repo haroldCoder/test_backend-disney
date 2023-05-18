@@ -22,7 +22,8 @@ route.route("/")
         // si no ocurre ningun error, pasa a hacer una busqueda en sequelize, en donde solo va a objtener el nombre y la imagen
         const personajes = await Personaje.findAll({
             where: whereCondition,
-            attributes: ['Nombre', 'Imagen']
+            attributes: ['Nombre', 'Imagen'],
+            paranoid: false
           });
         res.json(personajes);
     }
@@ -37,11 +38,11 @@ route.route("/")
         const { imagen, nombre, edad, peso, historia} = req.body;
 
         const nuevoPersonaje = await Personaje.create({
-            imagen,
-            nombre,
-            edad,
-            peso,
-            historia,
+            "Imagen": imagen,
+            "Nombre": nombre,
+            "Edad": edad,
+            "Peso": peso,
+            "Historia": historia,
         })
         res.json(nuevoPersonaje)
     }

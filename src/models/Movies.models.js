@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../connection');
+const Genero = require("./Genero.models");
 
 const Movie = sequelize.define('peliculaserie', {
     Imagen: {
@@ -19,5 +20,5 @@ const Movie = sequelize.define('peliculaserie', {
         allowNull: false
     } 
 })
-
+Movie.belongsTo(Genero, { foreignKey: 'generoId' });
 module.exports = Movie;
