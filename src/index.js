@@ -17,6 +17,7 @@ app.use("/auth", require("./routes/auth.route"));
 
 
 app.use("/characters", verifyToken, require("./routes/personajes.route"))
+app.use("(movies", verifyToken, require("./routes/movies.route"))
 
 //iniciar el servidor
 app.listen(3500, ()=>{

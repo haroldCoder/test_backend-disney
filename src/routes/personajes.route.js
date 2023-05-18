@@ -1,7 +1,6 @@
 const {Router} = require("express");
 const route = Router();
 const Personaje = require("../models/Personajes.models");
-const { where } = require("sequelize");
 
 route.route("/")
 .get(async(req, res)=>{
@@ -44,6 +43,7 @@ route.route("/")
             peso,
             historia,
         })
+        res.json(nuevoPersonaje)
     }
     catch(err){
         console.log(err);
