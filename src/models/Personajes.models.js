@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../connection');
+const Movie = require("./Movies.models")
 
 const Personaje = sequelize.define('personajes', {
   Imagen: {
@@ -24,7 +25,11 @@ const Personaje = sequelize.define('personajes', {
   },
   pelicula_serie_id: {
     type: DataTypes.INTEGER,
-    allowNull: false
+    allowNull: false,
+    references: {
+        model: 'peliculaserie',
+        key: 'id'
+    }
   }
 }, {
     paranoid: true,

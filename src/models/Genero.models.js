@@ -1,5 +1,6 @@
-const { DataTypes, STRING, INTEGER, UUID } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const sequelize = require('../connection');
+const Movie = require("./Movies.models");
 
 const Genero = sequelize.define('genero', {
     id: {
