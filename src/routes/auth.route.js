@@ -28,7 +28,7 @@ route.route("/login")
     
         // Generar el token JWT
         const token = jwt.sign({ username }, process.env.SECRETKEY);
-    
+        res.setHeader('Authorization', 'Bearer ' + token);
         // Enviar el token en la respuesta
         res.json({ token });
       } catch (error) {
