@@ -10,6 +10,10 @@ const Personaje = sequelize.define('personajes', {
     type: DataTypes.STRING,
     allowNull: false
   },
+  Edad: {
+    type: DataTypes.NUMBER,
+    allowNull: true
+  },
   Peso: {
     type: DataTypes.FLOAT,
     allowNull: true
