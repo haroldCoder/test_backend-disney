@@ -33,7 +33,7 @@ const Personaje = sequelize.define('personajes', {
   }
 }, {
     paranoid: true,
-    timestamps: true,
+    timestamps: false,
 });
 
 module.exports = Personaje;

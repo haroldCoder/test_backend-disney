@@ -35,7 +35,7 @@ route.route("/")
 
 .post(async(req, res)=>{
     try{
-        const { imagen, nombre, edad, peso, historia} = req.body;
+        const { imagen, nombre, edad, peso, historia, pelicula_serie_id} = req.body;
 
         const nuevoPersonaje = await Personaje.create({
             "Imagen": imagen,
@@ -43,6 +43,7 @@ route.route("/")
             "Edad": edad,
             "Peso": peso,
             "Historia": historia,
+            "pelicula_serie_id": pelicula_serie_id
         })
         res.json(nuevoPersonaje)
     }
@@ -52,7 +53,7 @@ route.route("/")
     }
 })
 
-route.route(":/id")
+route.route("/:id")
 .delete(async (req, res) => {
     try {
       // Obtener el id por parámetros
@@ -102,9 +103,7 @@ route.route(":/id")
         const { id } = req.params;
   
         // Buscar el personaje por su ID incluyendo las películas o series relacionadas
-        const personaje = await Personaje.findByPk(id, {
-          include: [{ model: PeliculaSerie }]
-        });
+        const personaje = await Personaje.findByPk(id);
   
         // Si el personaje no existe, devolver un error 404
         if (!personaje) {

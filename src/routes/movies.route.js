@@ -40,14 +40,13 @@ route.route("/")
 
 .post(async(req, res)=>{
     try{
-        const {imagen, titulo, fecha, calificacion, historia} = req.body;
+        const {imagen, titulo, fecha, calificacion} = req.body;
         console.log(imagen);
         const nuevaMovie = Movie.create({
             "Imagen": imagen,
             "Titulo": titulo,
             "Fecha": fecha,
-            "Calificacion": calificacion,
-            
+            "Calificacion": calificacion
         })
 
         res.json(nuevaMovie);
