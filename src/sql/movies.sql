@@ -1,4 +1,4 @@
-CREATE TABLE movies (
+CREATE TABLE peliculaserie (
     id INT AUTO_INCREMENT PRIMARY KEY,
     Imagen VARCHAR(255) NOT NULL,
     Titulo VARCHAR(255) NOT NULL,

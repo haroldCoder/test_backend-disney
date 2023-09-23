@@ -1,4 +1,4 @@
-CREATE TABLE Personaje (
+CREATE TABLE personajes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     Imagen VARCHAR(255) NOT NULL,
     Nombre VARCHAR(255) NOT NULL,

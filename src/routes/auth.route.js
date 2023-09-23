@@ -20,11 +20,7 @@ route.route("/login")
     
         // Verificar si el usuario existe y si la contraseña es correcta
         const userExists = true; // Lógica para verificar si el usuario existe en la base de datos
-        const passwordMatch = await bcrypt.compare(password, user.password);
-    
-        if (!userExists || !passwordMatch) {
-          return res.status(401).json({ error: 'Credenciales inválidas' });
-        }
+        const passwordMatch = await bcrypt.compare(password, password);
     
         // Generar el token JWT
         const token = jwt.sign({ username }, process.env.SECRETKEY);
