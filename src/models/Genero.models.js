@@ -16,6 +16,14 @@ const Genero = sequelize.define('genero', {
     Imagen: {
         type: DataTypes.STRING,
         allowNulls: false
+    },
+    Id_pelicula: {
+        type: DataTypes.INTEGER,
+        allowNulls: false,
+        references: {
+            model: 'peliculaserie',
+            key: 'id'
+        }
     }
 })
 

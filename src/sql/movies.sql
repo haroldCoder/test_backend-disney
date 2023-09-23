@@ -1,0 +1,7 @@
+CREATE TABLE movies (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Imagen VARCHAR(255) NOT NULL,
+    Titulo VARCHAR(255) NOT NULL,
+    Fecha DATE NOT NULL,
+    Calificacion TINYINT NOT NULL
+);
