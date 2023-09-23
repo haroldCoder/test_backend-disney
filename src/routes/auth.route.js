@@ -2,8 +2,18 @@ const {Router} = require("express");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const user = require("../models/users.models");
 
 const route = Router();
+
+const getUser = async(username, password) =>{
+    const userf = await user.findOne({
+      username: username,
+      password: password
+    });
+
+    return userf;
+}
 
 route.route("/login")
 .post(async(req, res)=>{
@@ -14,13 +24,12 @@ route.route("/login")
         if (!username || !password) {
           return res.status(400).json({ error: 'El nombre de usuario y la contraseña son requeridos' });
         }
-    
-        // Lógica para obtener el usuario de la base de datos
-        // ...
-    
-        // Verificar si el usuario existe y si la contraseña es correcta
-        const userExists = true; // Lógica para verificar si el usuario existe en la base de datos
-        const passwordMatch = await bcrypt.compare(password, password);
+        
+        const user = await getUser(username, password);
+
+        if (!user) {
+          return res.status(401).json({ error: 'Credenciales inválidas' });
+        }
     
         // Generar el token JWT
         const token = jwt.sign({ username }, process.env.SECRETKEY);
